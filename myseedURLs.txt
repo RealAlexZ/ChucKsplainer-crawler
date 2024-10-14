@@ -1,0 +1,3 @@
+https://chuck.stanford.edu/doc/examples/
+https://chuck.stanford.edu/doc/language/
+https://chuck.stanford.edu/doc/reference/

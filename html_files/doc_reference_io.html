@@ -1,0 +1,1241 @@
+<html>
+<link rel="stylesheet" type="text/css" href="ckdoc.css" />
+<link rel="stylesheet" type="text/css" href="class.css" />
+<title>Input & Output</title>
+<body>
+<a name="top"/>
+<div id="title">
+<div class="titleL">
+<div style="display: flex; align-items: center;"><div class="inline titlelogo"><a href="https://chuck.stanford.edu/" target="_blank"><img src="https://chuck.stanford.edu/doc/images/chuck-logo2023w.png" /> </div><div class="inline"><h1><a href="./">ChucK Class Library Reference</a></h1></div>
+<div class="inline gray"><h1>&nbsp;&nbsp;<span style="color:black">/</span>&nbsp;&nbsp;Input & Output</h1></div>
+</div>
+</div>
+</div>
+<div id="body">
+<div class="toc"><a id="toc"/>
+<p class="toc_class"><a href="#IO" class="ckdoc_typename ckdoc_type_object">IO</a></p>
+<p class="toc_class"><a href="#FileIO" class="ckdoc_typename ckdoc_type_object">FileIO</a></p>
+<p class="toc_class"><a href="#OscIn" class="ckdoc_typename ckdoc_type_object">OscIn</a></p>
+<p class="toc_class"><a href="#OscOut" class="ckdoc_typename ckdoc_type_object">OscOut</a></p>
+<p class="toc_class"><a href="#OscMsg" class="ckdoc_typename ckdoc_type_object">OscMsg</a></p>
+<p class="toc_class"><a href="#Hid" class="ckdoc_typename ckdoc_type_object">Hid</a></p>
+<p class="toc_class"><a href="#HidMsg" class="ckdoc_typename ckdoc_type_object">HidMsg</a></p>
+<p class="toc_class"><a href="#KBHit" class="ckdoc_typename ckdoc_type_object">KBHit</a></p>
+<p class="toc_class"><a href="#SerialIO" class="ckdoc_typename ckdoc_type_object">SerialIO</a></p>
+<p class="toc_class"><a href="#MidiIn" class="ckdoc_typename ckdoc_type_object">MidiIn</a></p>
+<p class="toc_class"><a href="#MidiOut" class="ckdoc_typename ckdoc_type_object">MidiOut</a></p>
+<p class="toc_class"><a href="#MidiMsg" class="ckdoc_typename ckdoc_type_object">MidiMsg</a></p>
+<p class="toc_class"><a href="#MidiFileIn" class="ckdoc_typename ckdoc_type_object">MidiFileIn</a></p>
+</div>
+<div class="classes">
+<p class="group_desc">Communication tools, including file input/output, Open Sound Control, MIDI, MIDI file reading, serial i/o.</p>
+<a name="IO" /><div class="class">
+<h2 class="class_title" name="IO">IO</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Base class for other IO classes such as FileIO, StdOut and StdErr. Besides IO.newline(), it’s unlikely you need to use this class directly.<p>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">IO</span>()</p>
+<p class="member_description">Default constructor for IO.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">close</span>()</p>
+<p class="member_description">Close the currently open IO.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">eof</span>()</p>
+<p class="member_description">Return whether end-of-file has been reached; the opposite of .more().</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">flush</span>()</p>
+<p class="member_description">Write any buffered output.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">good</span>()</p>
+<p class="member_description">Returns whether IO is ready for reading.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">mode</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flag)</p>
+<p class="member_description">Set the current IO mode; either IO.MODE_ASYNC or IO.MODE_SYNC.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">mode</span>()</p>
+<p class="member_description">Get the current IO mode; either IO.MODE_ASYNC or IO.MODE_SYNC.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">more</span>()</p>
+<p class="member_description">Return whether there is more to read; the opposite of .eof().</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">readFloat</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Read and return the next floating point value; binary mode: 'flags' denotes the size of float to read (IO.FLOAT32 or IO.FLOAT64).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">readInt</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Read and return the next integer; binary mode: 'flags' denotes the bit-size of int (IO.INT8, IO.INT16, or IO.INT32).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">readLine</span>()</p>
+<p class="member_description">Read until an end-of-line character.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> val)</p>
+<p class="member_description">Write string 'val'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> val)</p>
+<p class="member_description">Write integer 'val'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">float</span> val)</p>
+<p class="member_description">Write floating point number 'val'.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">newline</span>()</p>
+<p class="member_description">Newline character; same as IO.nl().</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">nl</span>()</p>
+<p class="member_description">Newline character; same as IO.newline().</p>
+</div>
+</div>
+<h3 class="class_section_header">static member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">APPEND</span></p><p class="member_description">Flag denoting append mode.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">ASCII</span></p><p class="member_description">Flag denoting ASCII IO mode.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">BINARY</span></p><p class="member_description">Flag denoting binary IO mode.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">FLOAT32</span></p><p class="member_description">Flag denoting 32-bit floating point type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">FLOAT64</span></p><p class="member_description">Flag denoting 64-bit floating point type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">INT16</span></p><p class="member_description">Flag denoting 16-bit integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">INT24</span></p><p class="member_description">Flag denoting 24-bit integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">INT32</span></p><p class="member_description">Flag denoting 32-bit integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">INT64</span></p><p class="member_description">Flag denoting 64-bit integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">INT8</span></p><p class="member_description">Flag denoting 8-bit integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MODE_ASYNC</span></p><p class="member_description">Flag denoting asychronous IO.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MODE_SYNC</span></p><p class="member_description">Flag denoting synchronous IO.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">READ</span></p><p class="member_description">Flag denoting read mode.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">READ_WRITE</span></p><p class="member_description">Flag denoting read/write mode.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SINT16</span></p><p class="member_description">Flag denoting 16-bit signed integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SINT24</span></p><p class="member_description">Flag denoting 24-bit signed integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SINT32</span></p><p class="member_description">Flag denoting 32-bit signed integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SINT64</span></p><p class="member_description">Flag denoting 64-bit signed integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SINT8</span></p><p class="member_description">Flag denoting 8-bit signed integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">UINT16</span></p><p class="member_description">Flag denoting 16-bit unsigned integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">UINT24</span></p><p class="member_description">Flag denoting 24-bit unsigned integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">UINT32</span></p><p class="member_description">Flag denoting 32-bit unsigned integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">UINT64</span></p><p class="member_description">Flag denoting 64-bit unsigned integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">UINT8</span></p><p class="member_description">Flag denoting 8-bit unsigned integer type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">WRITE</span></p><p class="member_description">Flag denoting write mode.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="FileIO" /><div class="class">
+<h2 class="class_title" name="FileIO">FileIO</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="io.html#IO" class="ckdoc_typename ckdoc_type_object">IO</a> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">File input and output utilities for reading, writing, seeking, etc. See examples for usage.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/io/chout.ck">io/chout.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-float.ck">io/read-float.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-int.ck">io/read-int.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-line.ck">io/read-line.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-str.ck">io/read-str.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-tokens.ck">io/read-tokens.ck</a></li>
+<li><a target="_blank" href="../examples/io/seek.ck">io/seek.ck</a></li>
+<li><a target="_blank" href="../examples/io/write.ck">io/write.ck</a></li>
+<li><a target="_blank" href="../examples/io/write2.ck">io/write2.ck</a></li>
+<li><a target="_blank" href="../examples/io/write-auto.ck">io/write-auto.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-byte.ck">io/read-byte.ck</a></li>
+<li><a target="_blank" href="../examples/io/write-byte.ck">io/write-byte.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">FileIO</span>()</p>
+<p class="member_description">Default constructor for FileIO.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">autoExtension</span>()</p>
+<p class="member_description">Get auto extension for "special:auto" filename generation (applicable to file writing only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">autoPrefix</span>()</p>
+<p class="member_description">Get auto prefix for "special:auto" filename generation (applicable to file writing only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">autoPrefixExtension</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> prefix, <span class="ckdoc_typename ckdoc_type_object">string</span> extension)</p>
+<p class="member_description">Set auto prefix and extension for "special:auto" filename generation (applicable to file writing only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">close</span>()</p>
+<p class="member_description">Close (and flush) the currently open file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span><span class="typename">[]</span> <span class="membername">dirList</span>()</p>
+<p class="member_description">Get an array of file names in an open directory.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">eof</span>()</p>
+<p class="member_description">Return whether end-of-file has been reached; the opposite of .more().</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">filename</span>()</p>
+<p class="member_description">Get current filename.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">flush</span>()</p>
+<p class="member_description">Write any buffered output to file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">good</span>()</p>
+<p class="member_description">Returns whether the file is ready for reading.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isDir</span>()</p>
+<p class="member_description">Return if the open file is a directory.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">mode</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flag)</p>
+<p class="member_description">Set file IO mode (IO.MODE_SYNC or IO.MODE_ASYNC).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">mode</span>()</p>
+<p class="member_description">Get file IO mode (IO.MODE_SYNC or IO.MODE_ASYNC).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">more</span>()</p>
+<p class="member_description">Return whether there is more to read; the opposite of .eof().</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path)</p>
+<p class="member_description">Open a file by name (and by default in ASCII mode).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path, <span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Open a file by name with flags (bitwise combinations of IO.READ, IO.WRITE, IO.READ_WRITE, IO_APPEND, IO.ASCII, IO.BINARY).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">readFloat</span>()</p>
+<p class="member_description">Read and return the next floating point value.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">readFloat</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Read and return the next floating point value; if binary mode: 'flags' denotes the size of float to read (IO.FLOAT32 or IO.FLOAT64).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">readInt</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Read and return an integer; binary mode: 'flags' specifies int size to read (IO.INT8, IO.INT16, IO.INT32 default to unsigned values; for signed integers use IO.SINT8, IO.SINT16, IO.SINT32).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">readLine</span>()</p>
+<p class="member_description">Read and return the next line from file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">seek</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> pos)</p>
+<p class="member_description">Seek to a specified byte offset in file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">size</span>()</p>
+<p class="member_description">Return the size of the file in bytes, or -1 if no file is opened or if a directory is opened.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">tell</span>()</p>
+<p class="member_description">Return the byte read offset of the file, or -1 if no file is opened.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> val)</p>
+<p class="member_description">Write a string to file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> val)</p>
+<p class="member_description">Write an integer to file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> val, <span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Write integer value to file; binary mode: int size specified by 'flags' (IO.INT8, IO.INT16, IO.INT32).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">float</span> val)</p>
+<p class="member_description">Write floating point value to file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">write</span>(<span class="ckdoc_typename ckdoc_type_primitive">float</span> val, <span class="ckdoc_typename ckdoc_type_primitive">int</span> flags)</p>
+<p class="member_description">Write floating point value to file; binary mode: flags indicate float size (IO.FLOAT32 or IO.FLOAT64).</p>
+</div>
+</div>
+<h3 class="class_section_header">static member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">expandPath</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path)</p>
+<p class="member_description">Expand platform-specific filepath to an absolute path, which is returned. On macOS and Linux expandPath() will attempt to resolve `~` or `~[username]`; on Windows expandPath() will attempt to resolve %USERNAME%. (Known issue: (macOS) expandPath currently introduced an audio click; it recommended to call expandPath() at the beginning; e.g., expanding path ahead of time could avoid a click instead of calling Machine.add() on a filepath with `~`.)</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="OscIn" /><div class="class">
+<h2 class="class_title" name="OscIn">OscIn</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class for receiving Open Sound Control (OSC) messages. See examples for usage.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/osc/r.ck">osc/r.ck</a></li>
+<li><a target="_blank" href="../examples/osc/r2.ck">osc/r2.ck</a></li>
+<li><a target="_blank" href="../examples/osc/s.ck">osc/s.ck</a></li>
+<li><a target="_blank" href="../examples/osc/osc-dump.ck">osc/osc-dump.ck</a></li>
+<li><a target="_blank" href="../examples/osc/multi-msg/r-multi-msg.ck">osc/multi-msg/r-multi-msg.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">OscIn</span>()</p>
+<p class="member_description">Default constructor for OscIn.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">addAddress</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> address)</p>
+<p class="member_description">Add an OSC address to receive messages from.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">listenAll</span>()</p>
+<p class="member_description">Set OscIn to receive messages of any OSC address.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">port</span>()</p>
+<p class="member_description">Get which port to listen on.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">port</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> p)</p>
+<p class="member_description">Set which port to listen on; this will begin priming the background OSC listener on the named port. If port is set to 0, a usable port would be automatically assigned; the auto-assigned port number can be retrieved by calling .port() but may initially take some time to acquire (e.g., hundreds of milliseconds); if there is more than one OscIn client on port 0, they all will eventually share the same auto-assigned port.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">recv</span>(<span class="ckdoc_typename ckdoc_type_object">OscMsg</span> msg)</p>
+<p class="member_description">Receive the next queued incoming OSC message, returning its contents in `msg`.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">removeAddress</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> address)</p>
+<p class="member_description">Stop listening on a particular OSC address.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">removeAllAddresses</span>()</p>
+<p class="member_description">Stop listening on all OSC addresses.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="OscOut" /><div class="class">
+<h2 class="class_title" name="OscOut">OscOut</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class for sending Open Sound Control (OSC) messages. See examples for usage.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/osc/s.ck">osc/s.ck</a></li>
+<li><a target="_blank" href="../examples/osc/r.ck">osc/r.ck</a></li>
+<li><a target="_blank" href="../examples/osc/r2.ck">osc/r2.ck</a></li>
+<li><a target="_blank" href="../examples/osc/osc-dump.ck">osc/osc-dump.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">OscOut</span>()</p>
+<p class="member_description">Default constructor for OscOut.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">add</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> i)</p>
+<p class="member_description">Add an integer value to an OSC message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">add</span>(<span class="ckdoc_typename ckdoc_type_primitive">float</span> f)</p>
+<p class="member_description">Add a floating-point value to an OSC message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">add</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> s)</p>
+<p class="member_description">Add an string value to an OSC message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">dest</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> hostname, <span class="ckdoc_typename ckdoc_type_primitive">int</span> port)</p>
+<p class="member_description">Set the destination hostname and port for sending OSC message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">send</span>()</p>
+<p class="member_description">Send the current OSC message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">start</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> address)</p>
+<p class="member_description">Start an OSC message with a particular address.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscOut</span> <span class="membername">start</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> address, <span class="ckdoc_typename ckdoc_type_object">string</span> host, <span class="ckdoc_typename ckdoc_type_primitive">int</span> port)</p>
+<p class="member_description">Start an OSC message with a particular address, aimed at a destination host and port.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="OscMsg" /><div class="class">
+<h2 class="class_title" name="OscMsg">OscMsg</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Helper class for receiving the contents of an OSC message.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/osc/r.ck">osc/r.ck</a></li>
+<li><a target="_blank" href="../examples/osc/r2.ck">osc/r2.ck</a></li>
+<li><a target="_blank" href="../examples/osc/s.ck">osc/s.ck</a></li>
+<li><a target="_blank" href="../examples/osc/osc-dump.ck">osc/osc-dump.ck</a></li>
+<li><a target="_blank" href="../examples/osc/multi-msg/r-multi-msg.ck">osc/multi-msg/r-multi-msg.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">OscMsg</span>()</p>
+<p class="member_description">Default constructor for OscMsg.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">getFloat</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> i)</p>
+<p class="member_description">Get argument (at index 'i') as a float.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">getInt</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> i)</p>
+<p class="member_description">Get argument (at index 'i') as an integer.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">getString</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> i)</p>
+<p class="member_description">Get argument (at index 'i') as a string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">numArgs</span>()</p>
+<p class="member_description">Get the number of arguments contained in this OscMsg.</p>
+</div>
+</div>
+<h3 class="class_section_header">member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">address</span></p><p class="member_description">The OSC address string (e.g., "/foo/param").</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">OscArg</span><span class="typename">[]</span> <span class="membername">args</span></p><p class="member_description">Array of OscArgs contained in this message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">typetag</span></p><p class="member_description">The OSC type tag string (e.g., "iif" for int, int, float).</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="Hid" /><div class="class">
+<h2 class="class_title" name="Hid">Hid</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class for interacting with human-interface devices (HIDs) such as keyboards, mice, gamepads, joysticks, etc.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/hid/kb.ck">hid/kb.ck</a></li>
+<li><a target="_blank" href="../examples/hid/keyboard-organ.ck">hid/keyboard-organ.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse.ck">hid/mouse.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse-abs.ck">hid/mouse-abs.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse-fm.ck">hid/mouse-fm.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy.ck">hid/joy.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-fm.ck">hid/joy-fm.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-noise.ck">hid/joy-noise.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-shake.ck">hid/joy-shake.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">Hid</span>()</p>
+<p class="member_description">Default constructor for Hid.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">can_wait</span>()</p>
+<p class="member_description">(internal) used by virtual machine for synthronization.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">good</span>()</p>
+<p class="member_description">Get whether a device has been successfully opened on this HID instance.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">name</span>()</p>
+<p class="member_description">Get the name of the currently open device; return empty string ("") if no device is open on this HID instance.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">num</span>()</p>
+<p class="member_description">Get the number of the currently open device; returns -1 if no device is open on this HID instance.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> type, <span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Open a HID device by device number ('num') and type ('type'). See static member variables for possible types.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> name)</p>
+<p class="member_description">Open a HID device by name.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openJoystick</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Open a joystick/gamepad by device number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openJoystick</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num, <span class="ckdoc_typename ckdoc_type_primitive">int</span> suppressErrMsg)</p>
+<p class="member_description">Open a joystick/gamepad by device number, with option (true/false) to suppress error messages.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openKeyboard</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Open a keyboard by device number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openKeyboard</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num, <span class="ckdoc_typename ckdoc_type_primitive">int</span> suppressErrMsg)</p>
+<p class="member_description">Open a keyboard by device number, with option (true/false) to suppress error messages.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openMouse</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Open a mouse/trackpad by device number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openMouse</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num, <span class="ckdoc_typename ckdoc_type_primitive">int</span> suppressErrMsg)</p>
+<p class="member_description">Open a mouse/trackpad by device number, with option (true/false) to suppress error messages.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">openTiltSensor</span>()</p>
+<p class="member_description">Open a tilt-sensor by device number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">printerr</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> toPrintOrNot)</p>
+<p class="member_description">Set whether to print errors (default is YES).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">read</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> type, <span class="ckdoc_typename ckdoc_type_primitive">int</span> which, <span class="ckdoc_typename ckdoc_type_object">HidMsg</span> msg)</p>
+<p class="member_description">Read the next HidMsg from device of type 'type' with device id 'which'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">recv</span>(<span class="ckdoc_typename ckdoc_type_object">HidMsg</span> msg)</p>
+<p class="member_description">Receive the next available HidMsg.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">send</span>(<span class="ckdoc_typename ckdoc_type_object">HidMsg</span> msg)</p>
+<p class="member_description">Send a HidMsg to device; return whether the operation was successful.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">dur</span> <span class="membername">globalTiltPollRate</span>(<span class="ckdoc_typename ckdoc_type_primitive">dur</span> d)</p>
+<p class="member_description">Set tilt-sensor poll rate.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">dur</span> <span class="membername">globalTiltPollRate</span>()</p>
+<p class="member_description">Get tilt-sensor poll rate.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span><span class="typename">[]</span> <span class="membername">readTiltSensor</span>()</p>
+<p class="member_description">Read tilt-sensor and return as an int array.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">startCursorTrack</span>()</p>
+<p class="member_description">Start cursor tracking; return whether the request was successful.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">stopCursorTrack</span>()</p>
+<p class="member_description">Stop cursor tracking; return whether the request was successful.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">ACCELEROMETER</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">AXIS_MOTION</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">BUTTON_DOWN</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">BUTTON_UP</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">DEVICE_CONNECTED</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">DEVICE_DISCONNECTED</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">FORCE_FEEDBACK</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">JOYSTICK</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">JOYSTICK_BALL</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">JOYSTICK_HAT</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">KEYBOARD</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">LED</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MOUSE</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MOUSE_MOTION</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MOUSE_WHEEL</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">TABLET</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">TILT_SENSOR</span></p><p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">WII_REMOTE</span></p><p class="empty_member_description">No description available</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="HidMsg" /><div class="class">
+<h2 class="class_title" name="HidMsg">HidMsg</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Helper class for receiving HID information; e.g., which key was pressed, joystick position, etc.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/hid/kb.ck">hid/kb.ck</a></li>
+<li><a target="_blank" href="../examples/hid/keyboard-organ.ck">hid/keyboard-organ.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse.ck">hid/mouse.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse-abs.ck">hid/mouse-abs.ck</a></li>
+<li><a target="_blank" href="../examples/hid/mouse-fm.ck">hid/mouse-fm.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy.ck">hid/joy.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-fm.ck">hid/joy-fm.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-noise.ck">hid/joy-noise.ck</a></li>
+<li><a target="_blank" href="../examples/hid/joy-shake.ck">hid/joy-shake.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">HidMsg</span>()</p>
+<p class="member_description">Default constructor for HidMsg.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isAxisMotion</span>()</p>
+<p class="member_description">Return whether this message is an axis-motion event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isButtonDown</span>()</p>
+<p class="member_description">Return whether this message is a button-down event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isButtonUp</span>()</p>
+<p class="member_description">Return whether this message is a button-up event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isHatMotion</span>()</p>
+<p class="member_description">Return whether this message is a hat-motion event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isMouseMotion</span>()</p>
+<p class="member_description">Return whether this message is a mouse-motion event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isWheelMotion</span>()</p>
+<p class="member_description">Return whether this message is a wheel-motion event.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">is_axis_motion</span>()</p>
+<p class="member_description">(Deprecated; use .isAxisMotion() instead).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">is_button_down</span>()</p>
+<p class="member_description">(Deprecated; use .isButtonDown() instead).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">is_button_up</span>()</p>
+<p class="member_description">(Deprecated; use .isButtonUp() instead).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">is_hat_motion</span>()</p>
+<p class="member_description">(Deprecated; use .isHatMotion() instead).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">is_mouse_motion</span>()</p>
+<p class="member_description">(Deprecated; use .isMouseMotion() instead).</p>
+</div>
+</div>
+<h3 class="class_section_header">member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">ascii</span></p><p class="member_description">ASCII value associated with a keyboard key.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">axis_position</span></p><p class="member_description">Joystick axis position (int).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">axisPosition</span></p><p class="member_description">Joystick axis position (float).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">cursorX</span></p><p class="member_description">Position of X-axis of pointing device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">cursorY</span></p><p class="member_description">Position of Y-axis of pointing device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">deltaX</span></p><p class="member_description">Change in X-axis of pointing device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">deltaY</span></p><p class="member_description">Change in Y-axis of pointing device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">deviceNum</span></p><p class="member_description">Device number that produced the message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">deviceType</span></p><p class="member_description">Device type that produced the message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">fdata</span></p><p class="member_description">Float data generate from the Hid device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">hatPosition</span></p><p class="member_description">Joystick hat position.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">idata</span></p><p class="member_description">Integer data generated from the Hid device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">key</span></p><p class="member_description">Code (USB) for a keyboard key.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">scaled_axis_position</span></p><p class="member_description">Position of the primary pointing device, scaled between 0.0 and 1.0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">scaledCursorX</span></p><p class="member_description">Position of X-axis of pointing device, scaled between 0.0 and 1.0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">scaledCursorY</span></p><p class="member_description">Position of Y-axis of pointing device, scaled between 0.0 and 1.0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">touchSize</span></p><p class="member_description">Multi-touch size.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">touchX</span></p><p class="member_description">Position of X-axis of pointing device, scaled between 0.0 and 1.0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">float</span> <span class="membername">touchY</span></p><p class="member_description">Position of X-axis of pointing device, scaled between 0.0 and 1.0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">type</span></p><p class="member_description">A number representing the message type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">time</span> <span class="membername">when</span></p><p class="member_description">Time when the HidMsg occurred, relative to the start of the file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">which</span></p><p class="member_description">Code (platform dependent) associated with a keyboard key.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">x</span></p><p class="member_description">Change in X-axis of pointing device (same as deltaX).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">y</span></p><p class="member_description">Change in Y-axis of pointing device (same as deltaY).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">z</span></p><p class="member_description">Change in Z-axis of pointing device.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="KBHit" /><div class="class">
+<h2 class="class_title" name="KBHit">KBHit</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">KBHit (terminal only) is a simple mechanism for capturing keyboard input; for a more flexible mechanism, see HID. (On Linux, KBHit does not require granting device permissions; it works out of the box.)<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/hid/kbhit/kbhit.ck">hid/kbhit/kbhit.ck</a></li>
+<li><a target="_blank" href="../examples/hid/kbhit/kbhit2.ck">hid/kbhit/kbhit2.ck</a></li>
+<li><a target="_blank" href="../examples/hid/kbhit/clix.ck">hid/kbhit/clix.ck</a></li>
+<li><a target="_blank" href="../examples/hid/kbhit/clix2.ck">hid/kbhit/clix2.ck</a></li>
+<li><a target="_blank" href="../examples/hid/kbhit/clix3.ck">hid/kbhit/clix3.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">KBHit</span>()</p>
+<p class="member_description">Default constructor for KBHit.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">can_wait</span>()</p>
+<p class="member_description">(internal) used by virtual machine for synthronization.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">getchar</span>()</p>
+<p class="member_description">Get the ASCII value of the last keyboard press.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Event</span> <span class="membername">hit</span>()</p>
+<p class="member_description">Return itself as an Event to wait on; this is largely unnecessary as the KBHit instance can be directly => to 'now'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">more</span>()</p>
+<p class="member_description">Return whether there are unprocessed KBHit events (e.g., if a user presses multiple keys at once).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">off</span>()</p>
+<p class="member_description">Disable the KBHit.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">on</span>()</p>
+<p class="member_description">Enable the KBHit.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">state</span>()</p>
+<p class="member_description">Get whether the KBHit is currently enabled.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="SerialIO" /><div class="class">
+<h2 class="class_title" name="SerialIO">SerialIO</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="io.html#IO" class="ckdoc_typename ckdoc_type_object">IO</a> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Serial input/output. popularly used to communicate with systems like Arduino.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/serial/byte.ck">serial/byte.ck</a></li>
+<li><a target="_blank" href="../examples/serial/bytes.ck">serial/bytes.ck</a></li>
+<li><a target="_blank" href="../examples/serial/ints-bin.ck">serial/ints-bin.ck</a></li>
+<li><a target="_blank" href="../examples/serial/ints-ascii.ck">serial/ints-ascii.ck</a></li>
+<li><a target="_blank" href="../examples/serial/lines.ck">serial/lines.ck</a></li>
+<li><a target="_blank" href="../examples/serial/list.ck">serial/list.ck</a></li>
+<li><a target="_blank" href="../examples/serial/write-bytes.ck">serial/write-bytes.ck</a></li>
+<li><a target="_blank" href="../examples/serial/write.ck">serial/write.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">SerialIO</span>()</p>
+<p class="member_description">Default constructor for SerialIO.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">baudRate</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> r)</p>
+<p class="member_description">Set baud rate.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">baudRate</span>()</p>
+<p class="member_description">Get current baud rate.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">close</span>()</p>
+<p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">dataAvailable</span>()</p>
+<p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">flush</span>()</p>
+<p class="member_description">Flush the IO buffer.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">getByte</span>()</p>
+<p class="member_description">Get next requested byte.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span><span class="typename">[]</span> <span class="membername">getBytes</span>()</p>
+<p class="member_description">Get next requested number of bytes.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span><span class="typename">[]</span> <span class="membername">getInts</span>()</p>
+<p class="member_description">Get next requested number of integers.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">getLine</span>()</p>
+<p class="member_description">Get next requested line.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">SerialIO</span> <span class="membername">onByte</span>()</p>
+<p class="member_description">Wait for one byte (binary mode only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">SerialIO</span> <span class="membername">onBytes</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Wait for requested number of bytes (binary mode only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">SerialIO</span> <span class="membername">onFloats</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Wait for requested number of floats (ASCII or binary mode).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">SerialIO</span> <span class="membername">onInts</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> num)</p>
+<p class="member_description">Wait for requested number of ints (ASCII or binary mode).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">SerialIO</span> <span class="membername">onLine</span>()</p>
+<p class="member_description">Wait for one line (ASCII mode only).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> i, <span class="ckdoc_typename ckdoc_type_primitive">int</span> baud, <span class="ckdoc_typename ckdoc_type_primitive">int</span> mode)</p>
+<p class="member_description">Open serial device i with specified baud rate and mode (binary or ASCII).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">readLine</span>()</p>
+<p class="empty_member_description">No description available</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">writeByte</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> b)</p>
+<p class="member_description">Write a single byte.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">writeBytes</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span><span class="typename">[]</span> b)</p>
+<p class="member_description">Write array of bytes.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span><span class="typename">[]</span> <span class="membername">list</span>()</p>
+<p class="member_description">Get list of available serial devices.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B115200</span></p><p class="member_description">115200 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B14400</span></p><p class="member_description">14400 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B19200</span></p><p class="member_description">19200 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B230400</span></p><p class="member_description">230400 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B2400</span></p><p class="member_description">2400 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B28800</span></p><p class="member_description">28800 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B38400</span></p><p class="member_description">38400 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B4800</span></p><p class="member_description">4800 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B57600</span></p><p class="member_description">57600 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B7200</span></p><p class="member_description">7200 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B76800</span></p><p class="member_description">76800 baud.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">B9600</span></p><p class="member_description">9600 baud.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="MidiIn" /><div class="class">
+<h2 class="class_title" name="MidiIn">MidiIn</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class that can be ChucKed to now as an event. When receiving a message, an event is signaled and Midi information can be read.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/midi/gomidi.ck">midi/gomidi.ck</a></li>
+<li><a target="_blank" href="../examples/midi/gomidi2.ck">midi/gomidi2.ck</a></li>
+<li><a target="_blank" href="../examples/midi/polyfony.ck">midi/polyfony.ck</a></li>
+<li><a target="_blank" href="../examples/midi/polyfony2.ck">midi/polyfony2.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">MidiIn</span>()</p>
+<p class="member_description">Default constructor for MidiIn.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">can_wait</span>()</p>
+<p class="member_description">(internal) used by virtual machine for synthronization.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">good</span>()</p>
+<p class="member_description">Return true (1) if a device has been opened for this instance and there was no error connecting to it. Return false (0) if a device has not been opened or there was an error opening a device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">name</span>()</p>
+<p class="member_description">Return the Midi device's name as string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">num</span>()</p>
+<p class="member_description">Return the device number of the device (i.e. the number passed to MidiIn/MidiOut.open).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> port)</p>
+<p class="member_description">Open Midi device using a port number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> name)</p>
+<p class="member_description">Open Midi device using the device's name.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">printerr</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> print_or_not)</p>
+<p class="member_description">Set error printing (1 for on, 0 for off). On by default.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">recv</span>(<span class="ckdoc_typename ckdoc_type_object">MidiMsg</span> msg)</p>
+<p class="member_description">Return into the MidiMsg argument the next message in the queue from the device. Return 0 if the queue is empty or 1 if a message was in the queue and returned in the argument.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="MidiOut" /><div class="class">
+<h2 class="class_title" name="MidiOut">MidiOut</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class for sending out MIDI messages. Note that channel numbers are 0-based.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/midi/midiout.ck">midi/midiout.ck</a></li>
+<li><a target="_blank" href="../examples/midi/midiout2.ck">midi/midiout2.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">MidiOut</span>()</p>
+<p class="member_description">Default constructor for MidiOut.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">channelPressure</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> pressure)</p>
+<p class="member_description">Send out a channelPressure message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">controlChange</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> controller, <span class="ckdoc_typename ckdoc_type_primitive">int</span> value)</p>
+<p class="member_description">Send out a controlChange message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">good</span>()</p>
+<p class="member_description">Return true (1) if a device has been opened for this instance and there was no error connecting to it. Return false (0) if a device has not been opened or there was an error opening a device.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">name</span>()</p>
+<p class="member_description">Return the Midi device's name as string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">noteOff</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> note, <span class="ckdoc_typename ckdoc_type_primitive">int</span> velocity)</p>
+<p class="member_description">Send out a noteOff message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">noteOn</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> note, <span class="ckdoc_typename ckdoc_type_primitive">int</span> velocity)</p>
+<p class="member_description">Send out a noteOn message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">num</span>()</p>
+<p class="member_description">Return the device number of the device (i.e. the number passed to MidiIn/MidiOut.open).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> port)</p>
+<p class="member_description">Open Midi device using a port number.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> name)</p>
+<p class="member_description">Open Midi device using the device's name.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">pitchBend</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> value)</p>
+<p class="member_description">Send out a pitchBend message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">pitchBend</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> lsb, <span class="ckdoc_typename ckdoc_type_primitive">int</span> msb)</p>
+<p class="member_description">Send out a pitchBend message with fine and coarse values.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">polyPressure</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> note, <span class="ckdoc_typename ckdoc_type_primitive">int</span> pressure)</p>
+<p class="member_description">Send out a polyPressure message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">printerr</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> print_or_not)</p>
+<p class="member_description">Set error printing (1 for on, 0 for off). On by default.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">programChange</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> channel, <span class="ckdoc_typename ckdoc_type_primitive">int</span> program)</p>
+<p class="member_description">Send out a programChange message.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">send</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> status, <span class="ckdoc_typename ckdoc_type_primitive">int</span> data1, <span class="ckdoc_typename ckdoc_type_primitive">int</span> data2)</p>
+<p class="member_description">Send out a MIDI message consisting of one status byte and two data bytes.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">send</span>(<span class="ckdoc_typename ckdoc_type_object">MidiMsg</span> msg)</p>
+<p class="member_description">Send out a MIDI message using a MidiMsg.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="MidiMsg" /><div class="class">
+<h2 class="class_title" name="MidiMsg">MidiMsg</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Creates a message for sending and receiving Midi information.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/midi/gomidi.ck">midi/gomidi.ck</a></li>
+<li><a target="_blank" href="../examples/midi/gomidi2.ck">midi/gomidi2.ck</a></li>
+<li><a target="_blank" href="../examples/midi/polyfony.ck">midi/polyfony.ck</a></li>
+<li><a target="_blank" href="../examples/midi/polyfony2.ck">midi/polyfony2.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">MidiMsg</span>()</p>
+<p class="member_description">Default constructor for MidiMsg.</p>
+</div>
+</div>
+<h3 class="class_section_header">member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">data1</span></p><p class="member_description">First byte of a Midi message, usually a status byte or command byte.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">data2</span></p><p class="member_description">Second byte of a Midi message, usually a note value.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">data3</span></p><p class="member_description">Third byte of a Midi message, usually a velocity value.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">dur</span> <span class="membername">when</span></p><p class="member_description">Time when the MidiMsg occurred, relative to the start of the file (only valid for MidiFileIn).</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="MidiFileIn" /><div class="class">
+<h2 class="class_title" name="MidiFileIn">MidiFileIn</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Class for reading data from a MIDI file.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/midi/midifile-play.ck">midi/midifile-play.ck</a></li>
+<li><a target="_blank" href="../examples/midi/bwv772.mid">midi/bwv772.mid</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">MidiFileIn</span>()</p>
+<p class="member_description">Default constructor for MidiFileIn.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">close</span>()</p>
+<p class="member_description">Close the MIDI file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">numTracks</span>()</p>
+<p class="member_description">Get the number of tracks in the open MIDI file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">open</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path)</p>
+<p class="member_description">Open a MIDI file.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">read</span>(<span class="ckdoc_typename ckdoc_type_object">MidiMsg</span> msg)</p>
+<p class="member_description">Read next MIDI Event (on default track 0); return contents in 'msg'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">read</span>(<span class="ckdoc_typename ckdoc_type_object">MidiMsg</span> msg, <span class="ckdoc_typename ckdoc_type_primitive">int</span> track)</p>
+<p class="member_description">Read next MIDI Event on track 'track'; return contents in 'msg'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">rewind</span>()</p>
+<p class="member_description">Rewind MIDI reader to beginning of default track 0.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">rewind</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> track)</p>
+<p class="member_description">Rewind MIDI reader to beginning of track 'track'.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+</div>
+</div>
+</body>
+</html>

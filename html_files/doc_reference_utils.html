@@ -1,0 +1,367 @@
+<html>
+<link rel="stylesheet" type="text/css" href="ckdoc.css" />
+<link rel="stylesheet" type="text/css" href="class.css" />
+<title>Utilities</title>
+<body>
+<a name="top"/>
+<div id="title">
+<div class="titleL">
+<div style="display: flex; align-items: center;"><div class="inline titlelogo"><a href="https://chuck.stanford.edu/" target="_blank"><img src="https://chuck.stanford.edu/doc/images/chuck-logo2023w.png" /> </div><div class="inline"><h1><a href="./">ChucK Class Library Reference</a></h1></div>
+<div class="inline gray"><h1>&nbsp;&nbsp;<span style="color:black">/</span>&nbsp;&nbsp;Utilities</h1></div>
+</div>
+</div>
+</div>
+<div id="body">
+<div class="toc"><a id="toc"/>
+<p class="toc_class"><a href="#CKDoc" class="ckdoc_typename ckdoc_type_object">CKDoc</a></p>
+<p class="toc_class"><a href="#Type" class="ckdoc_typename ckdoc_type_object">Type</a></p>
+<p class="toc_class"><a href="#StringTokenizer" class="ckdoc_typename ckdoc_type_object">StringTokenizer</a></p>
+<p class="toc_class"><a href="#ConsoleInput" class="ckdoc_typename ckdoc_type_object">ConsoleInput</a></p>
+</div>
+<div class="classes">
+<p class="group_desc">Additional Utiilities</p>
+<a name="CKDoc" /><div class="class">
+<h2 class="class_title" name="CKDoc">CKDoc</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">A ChucK documentation generator. Based on Spencer Salazar's ckdoc utility.<p>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">CKDoc</span>()</p>
+<p class="member_description">Default constructor for CKDoc.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">addGroup</span>(<span class="ckdoc_typename ckdoc_type_object">Type</span><span class="typename">[]</span> types, <span class="ckdoc_typename ckdoc_type_object">string</span> name, <span class="ckdoc_typename ckdoc_type_object">string</span> shortName, <span class="ckdoc_typename ckdoc_type_object">string</span> description)</p>
+<p class="member_description">Add a group of types to be documented, including group 'name', a 'shortName' to be used for any files, and a group 'description'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">addGroup</span>(<span class="ckdoc_typename ckdoc_type_object">string</span><span class="typename">[]</span> typeNames, <span class="ckdoc_typename ckdoc_type_object">string</span> name, <span class="ckdoc_typename ckdoc_type_object">string</span> shortName, <span class="ckdoc_typename ckdoc_type_object">string</span> description)</p>
+<p class="member_description">Add a group of types (by type name) to be documented, including group 'name', a 'shortName' to be used for any files, and a group 'description'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">addGroupExternal</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> name, <span class="ckdoc_typename ckdoc_type_object">string</span> URL, <span class="ckdoc_typename ckdoc_type_object">string</span> description, <span class="ckdoc_typename ckdoc_type_object">string</span> longDesc)</p>
+<p class="member_description">Add a group documention at an external URL location.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">clear</span>()</p>
+<p class="member_description">Clear all added groups.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">examplesRoot</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path)</p>
+<p class="member_description">Set the examples directory root path; returns what was set.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">examplesRoot</span>()</p>
+<p class="member_description">Get the current examples directory root path.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">genCSS</span>()</p>
+<p class="member_description">Generate CSS; return as string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">genGroups</span>(<span class="ckdoc_typename ckdoc_type_object">string</span><span class="typename">[]</span> results)</p>
+<p class="member_description">Generate documentation for all added groups, return each in a separate entry.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">genIndex</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> indexTitle)</p>
+<p class="member_description">Generate top-level index; return as string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">genType</span>(<span class="ckdoc_typename ckdoc_type_object">Type</span> type)</p>
+<p class="member_description">Generate documentation for a single Type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">genType</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> typeName)</p>
+<p class="member_description">Generate documentation for a single Type (by name).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">numGroups</span>()</p>
+<p class="member_description">Get the number of groups added.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">outputFormat</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> which)</p>
+<p class="member_description">Set which output format to use; see CKDoc.HTML, CKDoc.TEXT, CKDoc.MARKDOWN, CKDoc.JSON.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">outputFormat</span>()</p>
+<p class="member_description">Set which output format is selected; see CKDoc.HTML, CKDoc.TEXT, CKDoc.MARKDOWN, CKDoc.JSON.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">outputToDir</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> path, <span class="ckdoc_typename ckdoc_type_object">string</span> indexTitle)</p>
+<p class="member_description">Generate everything as files into the output directory.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">sort</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> toggle)</p>
+<p class="member_description">Enable or disable alphabetical sorting of functions and variables.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">sort</span>()</p>
+<p class="member_description">Get the current status of alphabetical sorting.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">HTML</span></p><p class="member_description">Output HTML format.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">JSON</span></p><p class="member_description">Output JSON format (not implemented).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">MARKDOWN</span></p><p class="member_description">Output MARKDOWN format (not implemented).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">NONE</span></p><p class="member_description">No output format.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">TEXT</span></p><p class="member_description">Output TEXT format (not implemented).</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="Type" /><div class="class">
+<h2 class="class_title" name="Type">Type</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">A representation of a ChucK type.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/type/type_type.ck">type/type_type.ck</a></li>
+<li><a target="_blank" href="../examples/type/type_query.ck">type/type_query.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">Type</span>()</p>
+<p class="member_description">Default constructor for Type.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">arrayDepth</span>()</p>
+<p class="member_description">Return the number of array dimensions associated with this Type (e.g., 'int[][]' has 2; 'int' has 0).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">baseName</span>()</p>
+<p class="member_description">Return the base name of this Type. The base of name of an array Type is the type without the array dimensions (e.g., base name of 'int[][]' is 'int')</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span><span class="typename">[]</span> <span class="membername">children</span>()</p>
+<p class="member_description">Retrieve this Type's children Types.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">equals</span>(<span class="ckdoc_typename ckdoc_type_object">Type</span> another)</p>
+<p class="member_description">Return whether this Type is same as 'another'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isArray</span>()</p>
+<p class="member_description">Return whether this Type is some kind of an array.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isPrimitive</span>()</p>
+<p class="member_description">Return whether this is a primitive Type (e.g., 'int' and 'dur' are primitives types; 'Object' and its children Types are not).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isa</span>(<span class="ckdoc_typename ckdoc_type_object">Type</span> another)</p>
+<p class="member_description">Return whether this Type is a kind of 'another'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">isa</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> another)</p>
+<p class="member_description">Return whether this Type is a kind of 'another'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">name</span>()</p>
+<p class="member_description">Return the name of this Type.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">origin</span>()</p>
+<p class="member_description">Return a string describing where this Type was defined (e.g., "builtin", "chugin", "cklib", "user").</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">parent</span>()</p>
+<p class="member_description">Return this Type's parent Type; returns null if this Type is 'Object'.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">find</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> typeName)</p>
+<p class="member_description">Find and return the Type associated with 'typeName'; returns null if no Types currently in the VM with that name.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span><span class="typename">[]</span> <span class="membername">getTypes</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> attributes, <span class="ckdoc_typename ckdoc_type_primitive">int</span> origins)</p>
+<p class="member_description">Retrieve all top-level Types in the ChucK runtime type system that fit the attributes and origins flags. Flags that can bitwise-OR'ed for attributes: Type.ATTRIB_OBJECT, Type.ATTRIB_PRIMITIVE,  TYPE_SPECIAL -- and for origins: Type.ORIGIN_BUILTIN, Type.ORIGIN_CHUGIN, Type.ORIGIN_CKLIB, Type.ORIGIN_USER.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span><span class="typename">[]</span> <span class="membername">getTypes</span>()</p>
+<p class="member_description">Retrieves all top-level Types currently in the type system.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_object">Object</span> obj)</p>
+<p class="member_description">Return the Type of 'obj'</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> val)</p>
+<p class="member_description">Return the Type associated with 'int'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">float</span> val)</p>
+<p class="member_description">Return the Type associated with 'float'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">time</span> val)</p>
+<p class="member_description">Return the Type associated with 'time'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">dur</span> val)</p>
+<p class="member_description">Return the Type associated with 'dur'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">complex</span> val)</p>
+<p class="member_description">Return the Type associated with 'complex'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">polar</span> val)</p>
+<p class="member_description">Return the Type associated with 'polar'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">vec3</span> val)</p>
+<p class="member_description">Return the Type associated with 'vec3'.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Type</span> <span class="membername">of</span>(<span class="ckdoc_typename ckdoc_type_primitive">vec4</span> val)</p>
+<p class="member_description">Return the Type associated with 'vec4'.</p>
+</div>
+</div>
+<h3 class="class_section_header">static member variables</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">BUILTIN</span></p><p class="member_description">Origin bit for "builtin".</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">CHUGIN</span></p><p class="member_description">Origin bit for "chugin".</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">CKLIB</span></p><p class="member_description">Origin bit for "cklib".</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">OBJECT</span></p><p class="member_description">Attribute bit for non-primitive Object types.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">PRIMITIVE</span></p><p class="member_description">Attribute bit for primitive types.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">SPECIAL</span></p><p class="member_description">Attribute bit for special types (e.g., @array and @function).</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">USER</span></p><p class="member_description">Origin bit for "user".</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="StringTokenizer" /><div class="class">
+<h2 class="class_title" name="StringTokenizer">StringTokenizer</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">Break a string into tokens. This uses whitespace as the delimiter.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/string/token.ck">string/token.ck</a></li>
+<li><a target="_blank" href="../examples/string/readline.ck">string/readline.ck</a></li>
+<li><a target="_blank" href="../examples/io/read-tokens.ck">io/read-tokens.ck</a></li>
+<li><a target="_blank" href="../examples/io/jabberwocky.txt">io/jabberwocky.txt</a></li>
+<li><a target="_blank" href="../examples/ai/word2vec/word2vec-prompt.ck">ai/word2vec/word2vec-prompt.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">StringTokenizer</span>()</p>
+<p class="member_description">Default constructor for StringTokenizer.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">get</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> index)</p>
+<p class="member_description">Return the i-th token in the set string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">get</span>(<span class="ckdoc_typename ckdoc_type_primitive">int</span> index, <span class="ckdoc_typename ckdoc_type_object">string</span> out)</p>
+<p class="member_description">Return the i-th token in the set string. Additionally, write the token string to the `out` string variable.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">more</span>()</p>
+<p class="member_description">Return true (1) if there are still more tokens, false (0) if no more tokens.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">next</span>()</p>
+<p class="member_description">Return the next token string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">next</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> out)</p>
+<p class="member_description">Return the next token string. Additionally, write the token string to the 'out' string variable.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">reset</span>()</p>
+<p class="member_description">Reset token iteration back to the beginning of the set string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">void</span> <span class="membername">set</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> line)</p>
+<p class="member_description">Set the string to be tokenized.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">size</span>()</p>
+<p class="member_description">Returns the number of token strings that the set string can be broken into.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+<a name="ConsoleInput" /><div class="class">
+<h2 class="class_title" name="ConsoleInput">ConsoleInput</h2>
+<h4><span class="class_inherits">inherits</span> : <a href="base.html#Event" class="ckdoc_typename ckdoc_type_object">Event</a> : <a href="base.html#Object" class="ckdoc_typename ckdoc_type_object">Object</a> </h4>
+<p class="class_description">(Terminal only) a utility for prompting user input on the command line.<p>
+<h3 class="class_section_header">examples</h3><div class="examples"><ul>
+<li><a target="_blank" href="../examples/string/readline.ck">string/readline.ck</a></li>
+<li><a target="_blank" href="../examples/ai/word2vec/word2vec-prompt.ck">ai/word2vec/word2vec-prompt.ck</a></li>
+<li><a target="_blank" href="../examples/ai/word2vec/poem-ungenerate.ck">ai/word2vec/poem-ungenerate.ck</a></li>
+</ul></div>
+<h3 class="class_section_header">constructors</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="membername">ConsoleInput</span>()</p>
+<p class="member_description">Default constructor for ConsoleInput.</p>
+</div>
+</div>
+<h3 class="class_section_header">member functions</h3>
+<div class="members">
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">can_wait</span>()</p>
+<p class="member_description">(internal) used by virtual machine for synthronization.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">string</span> <span class="membername">getLine</span>()</p>
+<p class="member_description">Return the next line of input as a string.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_primitive">int</span> <span class="membername">more</span>()</p>
+<p class="member_description">Return whether there is more input to read.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Event</span> <span class="membername">prompt</span>()</p>
+<p class="member_description">Return an Event to wait on.</p>
+</div>
+<div class="member">
+<p class="member_declaration"><span class="ckdoc_typename ckdoc_type_object">Event</span> <span class="membername">prompt</span>(<span class="ckdoc_typename ckdoc_type_object">string</span> what)</p>
+<p class="member_description">Print a prompt text and return an Event to wait on.</p>
+</div>
+</div>
+<p class="top_link">[ <a href="#top">top</a> ]</p>
+</div>
+<hr />
+</div>
+</div>
+</body>
+</html>
